@@ -1,7 +1,7 @@
 <template>
 <div class="">
-  <h1 class="text-3xl font-bold px-5 mt-5 text-underground lg:px-28">Home</h1>
-  <div class="flex justify-center my-10">
+  <h1 class="text-3xl font-bold px-5 my-5 text-underground lg:px-28">Home</h1>
+  <div class="flex justify-center py-3 lg:absolute relative lg:top-4 lg:right-4">
     <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12" />
   </div>
   <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">

@@ -14,7 +14,7 @@ const atraso = computed(() => {
 
 <template>
 <div
-  class="lg:absolute relative z-10 bg-heaven flex items-center gap-2 p-4 border border-underground rounded-md flex-col w-fit top-4 right-4">
+  class="z-10 bg-heaven flex items-center gap-2 p-4 border border-underground rounded-md flex-col w-fit">
   <p>O baiano ainda nao bateu ponto</p>
   <span class="font-black text-carmine text-3xl">
     +{{ useDateFormat(new Date(atraso + (3600000 * 3)), 'HH:mm:ss').value }}
