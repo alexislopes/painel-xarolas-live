@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "x-hub",
+  "homepage": "https://alexislopes.github.io/x-hub/",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,10 +8,12 @@
     "dev": "nuxt dev --dotenv .env",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "nuxt generate && touch .output/public/.nojekyll && gh-pages --dotfiles -d .output/public"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "gh-pages": "^6.1.1",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

@@ -2,7 +2,7 @@
 <div class="">
   <h1 class="text-3xl font-bold px-5 mt-5 text-underground lg:px-28">Home</h1>
   <div class="flex justify-center my-10">
-    <Cronometro v-if="show12h && !streamInfo.data.length" />
+    <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12" />
   </div>
   <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
     <div class="relative">
@@ -14,7 +14,7 @@
           <p v-if="!streamInfo.data.length" class="font-bold text-2xl lg:text-base p-5 text-underground">O <span
               class="text-mechanic">filisteu</span> está <span class="text-ivy">comendo
               mole</span></p>
-          <div v-else class="text-2xl lg:text-base text-underground p-5">
+          <div v-else class="text-2xl lg:text-base text-underground px-5">
 
             <p class="font-bold ">
               {{ streamInfo.data[0].title }}
