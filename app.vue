@@ -40,6 +40,15 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: 'Xarolas HUB',
+  ogTitle: 'Xarolas HUB',
+  description: 'Fique por dentro da Xarolas Live. Agenda, sagas, terrorzão.',
+  ogDescription: 'Fique por dentro da Xarolas Live. Agenda, sagas, terrorzão.',
+  ogImage: 'https://static-cdn.jtvnw.net/jtv_user_pictures/9f78656d-7853-40bf-bd96-90090252a858-profile_image-300x300.png',
+  twitterCard: 'summary',
+})
+
 useHead({ title: 'Xarolas HUB | Início', link: [{ rel: 'icon', type: 'image/png', href: "https://static-cdn.jtvnw.net/jtv_user_pictures/9f78656d-7853-40bf-bd96-90090252a858-profile_image-300x300.png" }] })
 
 const { $twitch } = useNuxtApp()
