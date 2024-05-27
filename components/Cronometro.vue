@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-
-
 const hoje12h = computed(() => {
   const hoje = new Date()
   return new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 12, 0)
@@ -13,8 +11,8 @@ const atraso = computed(() => {
 </script>
 
 <template>
-<div
-  class="z-10 bg-heaven flex items-center gap-2 p-4 border border-underground rounded-md flex-col w-fit">
+<div 
+  class="fixed z-10 bg-heaven flex items-center gap-2 p-4 border border-underground rounded-md flex-col w-fit select-none">
   <p>O baiano ainda nao bateu ponto</p>
   <span class="font-black text-carmine text-3xl">
     +{{ useDateFormat(new Date(atraso + (3600000 * 3)), 'HH:mm:ss').value }}

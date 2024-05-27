@@ -55,7 +55,7 @@ const { $twitch } = useNuxtApp()
 
 const { data: streamInfo, status: statusStream, error: errorStream } = await $twitch.streams.getStreamInfo()
 const { data, status, error } = await $twitch.users.getUserInfo()
-const { data: videos } = await $twitch.videos.getVideosList()
+const { data: videos, status: statusVideos } = await $twitch.videos.getVideosList()
 
 const thumb = computed(() => {
   return streamInfo.value.data.length ? streamInfo.value.data[0].thumbnail_url.replace('{width}', 1920).replace('{height}', 1080) : data.value.data[0].offline_image_url
@@ -80,6 +80,10 @@ onMounted(() => {
 
 onUnmounted(() => {
   clearInterval(interval12h)
+})
+
+watch([statusStream, statusVideos, status], (value) => {
+  console.log(value)
 })
 </script>
 
