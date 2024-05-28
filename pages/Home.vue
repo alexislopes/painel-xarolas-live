@@ -2,7 +2,7 @@
 <div class="">
   <h1 class="text-3xl font-bold px-5 my-5 text-underground lg:px-28">Home</h1>
   <div class="flex justify-center py-3 lg:absolute relative lg:top-4 lg:right-4">
-    <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12" />
+    <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
   </div>
   <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
     <div class="relative">
@@ -38,7 +38,7 @@
 </div>
 <CopyPasta v-if="show12h && !streamInfo.data.length" />
 </template>
-
+  
 <script setup>
 useSeoMeta({
   title: 'Xarolas HUB',
@@ -74,6 +74,11 @@ function toggle12h() {
   }
 }
 
+const streamouHoje = computed(() => {
+  const hoje = new Date().setHours(0, 0, 0, 0)
+  return new Date(videos.value.data[0].created_at).setHours(0, 0, 0, 0) === hoje
+})
+
 onMounted(() => {
   interval12h.value = setInterval(toggle12h, 1000)
 })
@@ -86,7 +91,7 @@ watch([statusStream, statusVideos, status], (value) => {
   console.log(value)
 })
 </script>
-
+  
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 
@@ -98,4 +103,5 @@ body {
 
 }
 </style>
-
+  
+  

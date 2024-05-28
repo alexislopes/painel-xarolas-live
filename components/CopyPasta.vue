@@ -39,6 +39,9 @@ onMounted(() => {
 </template>
 
 <style >
+.el {
+  animation: pop 10s linear forwards;
+}
 @keyframes pop {
   0% {
     transform: scale(.1);

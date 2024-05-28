@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     baseURL: "/x-hub/"
   },
   ssr: false,
+  pages: true,
 
   runtimeConfig: {
     public: {
