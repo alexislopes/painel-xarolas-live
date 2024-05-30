@@ -1,11 +1,11 @@
 <template>
 <div class="">
-  <h1 class="text-3xl font-bold px-5 my-5 text-underground lg:px-28">Home</h1>
   <div class="flex justify-center py-3 lg:absolute relative lg:top-4 lg:right-4">
     <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
-  </div>
-  <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
-    <div class="relative">
+    </div>
+    <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
+      <div class="relative">
+      <!-- <h1 class="text-3xl font-bold text-underground">Home</h1> -->
       <img :src="thumb" class="lg:w-[60vw] lg:rounded-2xl" alt="">
       <div class="flex justify-center lg:justify-start lg:p-5">
         <img class="rounded-full w-48 h-48 absolute lg:relative -translate-y-1/2 lg:translate-y-0 lg:w-16 lg:h-16"
