@@ -42,7 +42,7 @@ const diff = computed(() => {
 const atrasoFormatado = computed(() => {
   const horas = Math.floor(diff.value / 60);
   const minutosRestantes = diff.value % 60;
-  return `+${horas}:${minutosRestantes.toString().padStart(2, '0')}`;
+  return `${Math.abs(horas)}h${Math.abs(minutosRestantes.toString().padStart(2, '0'))}m`;
 })
 
 </script>
@@ -61,8 +61,9 @@ const atrasoFormatado = computed(() => {
       abriu às <span class="text-mechanic">{{ hora }}</span>
     </p>
     <div class="flex justify-center flex-col items-center">
-      <p class="font-extrabold text-3xl">{{ atrasoFormatado }}</p>
-      <span class="font-semibold text-xs">de atraso</span>
+      <p class="font-extrabold text-2xl">{{ atrasoFormatado }}</p>
+      <span v-if="diff > 0" class="font-semibold text-xs">de atraso</span>
+      <span v-else class="font-semibold text-xs">adiantado 👏</span>
     </div>
   </div>
 </div>

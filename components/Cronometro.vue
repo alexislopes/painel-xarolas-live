@@ -8,22 +8,23 @@ const atraso = computed(() => {
   return useNow().value.getTime() - hoje12h.value.getTime()
 })
 
+const cronometro = ref()
+
+const { width: screen_h } = useWindowSize()
+const { width: element_h } = useElementSize(cronometro)
+
+
+
 </script>
 
 <template>
-<div 
-  class="fixed z-10 bg-heaven flex items-center gap-2 p-4 border border-underground rounded-md flex-col w-fit select-none">
-  <p>O baiano ainda nao bateu ponto</p>
-  <span class="font-black text-carmine text-3xl">
+<div ref="cronometro"
+:style="{ top: '8px', right: `${(screen_h - element_h) / 2}px` }"
+  class="fixed z-10 bg-heaven flex items-center gap-2 px-3 py-1 border border-underground rounded-full flex-col w-fit select-none">
+
+  <span class="font-black text-carmine text-xs">
     +{{ useDateFormat(new Date(atraso + (3600000 * 3)), 'HH:mm:ss').value }}
   </span>
-  <div class="flex items-center gap-1">
-    <img src="https://pbs.twimg.com/media/F72UqqOXEAAf6xK?format=jpg&name=240x240" class="h-7 rounded-full" alt="">
-    <p class="text-xs px-2 py-1 rounded-full shadow-md">
-
-      Vou dar uma atrasadinha, guys ✌️😁✌️
-    </p>
-  </div>
 </div>
 </template>
 

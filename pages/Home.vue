@@ -1,10 +1,8 @@
 <template>
 <div class="">
-  <div class="flex justify-center py-3 lg:absolute relative lg:top-4 lg:right-4">
-    <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
-    </div>
-    <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
-      <div class="relative">
+  <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
+  <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
+    <div class="relative">
       <!-- <h1 class="text-3xl font-bold text-underground">Home</h1> -->
       <img :src="thumb" class="lg:w-[60vw] lg:rounded-2xl" alt="">
       <div class="flex justify-center lg:justify-start lg:p-5">
@@ -27,7 +25,7 @@
     </div>
     <div class="p-5 lg:p-0">
 
-      <h2 class="text-2xl font-bold text-underground mb-5 mt-10 lg:mt-0">Histórico de atrasos</h2>
+      <h2 class="text-2xl font-bold text-underground mb-4 mt-10 lg:mt-0">Pontualidade</h2>
       <div class="">
         <div class="border border-ivy rounded-xl bg-heaven">
           <Atraso v-for="video in videos.data.slice(0, 7)" :key="video.id" :video="video" />
