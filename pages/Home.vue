@@ -3,25 +3,11 @@
   <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
   <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
     <div class="relative">
-      <!-- <h1 class="text-3xl font-bold text-underground">Home</h1> -->
-      <img :src="thumb" class="lg:w-[60vw] lg:rounded-2xl" alt="">
-      <div class="flex justify-center lg:justify-start lg:p-5">
-        <img class="rounded-full w-48 h-48 absolute lg:relative -translate-y-1/2 lg:translate-y-0 lg:w-16 lg:h-16"
-          :src="data.data[0].profile_image_url" alt="">
-        <div class="bg-cloudy lg:bg-transparent rounded-xl mt-28 lg:mt-0 m-5 lg:m-0">
-          <p v-if="!streamInfo.data.length" class="font-bold text-2xl lg:text-base p-5 text-underground">O <span
-              class="text-mechanic">filisteu</span> está <span class="text-ivy">comendo
-              mole</span></p>
-          <div v-else class="text-2xl lg:text-base text-underground px-5">
-
-            <p class="font-bold ">
-              {{ streamInfo.data[0].title }}
-            </p>
-            <p>{{ streamInfo.data[0].game_name }}</p>
-          </div>
-        </div>
-      </div>
-
+      <h1 class="text-2xl font-bold">Última stream</h1>
+      <PreviousStreamCard :video="videos.data[0]" />
+      <h1 class="text-2xl font-bold">Agora</h1>
+      <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]"/>
+      <OffCard v-else :user="data.data[0]"/>
     </div>
     <div class="p-5 lg:p-0">
 
