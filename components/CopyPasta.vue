@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-<div id="container" class="fixed top-0 bottom-0 left-0 right-0">
+<div id="container" class="fixed pointer-events-none top-0 bottom-0 left-0 right-0">
 </div>
 </template>
 

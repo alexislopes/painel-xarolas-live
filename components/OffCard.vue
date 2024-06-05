@@ -1,5 +1,5 @@
 <template>
-<div class="flex gap-2  bg-heaven w-fit rounded-lg">
+<div class="flex gap-2  bg-heaven w-fit rounded-lg max-w-sm flex-col p-4">
   <img class="h-56 rounded-lg" :src="user.offline_image_url" />
   <div class="relative p-2">
 

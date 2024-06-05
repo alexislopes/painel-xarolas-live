@@ -1,20 +1,27 @@
 <template>
 <div class="">
   <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
-  <div class="lg:flex lg:flex-row lg:justify-center lg:gap-10">
-    <div class="relative">
-      <h1 class="text-2xl font-bold">Última stream</h1>
-      <PreviousStreamCard :video="videos.data[0]" />
-      <h1 class="text-2xl font-bold">Agora</h1>
-      <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]"/>
-      <OffCard v-else :user="data.data[0]"/>
+  <div class="lg:flex lg:flex-row items-center lg:items-start justify-center lg:gap-4">
+    <div class="relative flex gap-4 flex-col items-center lg:flex-row">
+      <div>
+        <h1 class="text-2xl font-bold mb-2">Agora</h1>
+        <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]"/>
+        <OffCard v-else :user="data.data[0]"/>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold mb-2">Última stream</h1>
+        <PreviousStreamCard :video="videos.data[0]" />
+      </div>
     </div>
-    <div class="p-5 lg:p-0">
+    <div class="p-4 lg:p-0 flex flex-col items-center justify-center">
 
-      <h2 class="text-2xl font-bold text-underground mb-4 mt-10 lg:mt-0">Pontualidade</h2>
-      <div class="">
-        <div class="border border-ivy rounded-xl bg-heaven">
-          <Atraso v-for="video in videos.data.slice(0, 7)" :key="video.id" :video="video" />
+      <div>
+
+        <h2 class="text-2xl font-bold text-underground mb-2 lg:mt-0">Pontualidade</h2>
+        <div class="max-w-sm">
+          <div class="border border-ivy rounded-xl bg-heaven">
+            <Atraso v-for="video in videos.data.slice(0, 7)" :key="video.id" :video="video" />
+          </div>
         </div>
       </div>
     </div>

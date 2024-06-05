@@ -1,5 +1,5 @@
 <template>
-<div class="flex gap-2 bg-heaven w-fit rounded-lg">
+<div class="flex gap-2 bg-[#f2e1e6] w-fit rounded-lg flex-col p-4 max-w-sm">
   <div>
     <div class="m-2 w-fit uppercase absolute text-white bg-[#e91916] text-sm px-2 rounded font-medium">
       ao vivo
@@ -8,7 +8,7 @@
   </div>
   <div class="relative p-2">
 
-    <div class="flex flex-col gap-2 max-w-80 h-full justify-between">
+    <div class="flex flex-col gap-2 h-full justify-between">
       <div class="flex flex-col gap-2">
 
         <div class="flex flex-col gap-2">
@@ -17,7 +17,7 @@
           </p>
           <p class="text-sm font-semibold">{{ stream.title }}</p>
         </div>
-        <span class="flex gap-2 font-semibold text-[#ff4f4d] text-sm">
+        <span class="flex gap-2 font-semibold text-[#971311] text-sm">
           <MajesticonsUserLine />
           {{ stream.viewer_count }}
         </span>

@@ -1,5 +1,5 @@
 <template>
-<div class="flex gap-2 bg-heaven w-fit rounded-lg">
+<div class="flex gap-2 bg-heaven w-fit rounded-lg flex-col max-w-sm p-4">
   <div>
     <!-- <div class="m-2 w-fit uppercase absolute text-white bg-[#e91916] text-sm px-2 rounded font-medium">
       ao vivo
@@ -8,20 +8,19 @@
   </div>
   <div class="relative p-2">
 
-    <div class="flex flex-col gap-2 max-w-80 h-full justify-between">
+    <div class="flex flex-col gap-2 h-full justify-between">
       <div class="flex flex-col gap-2">
 
         <div class="flex flex-col gap-2">
           <p class="text-xs font-medium">
-            {{ video.user_name }} esteve online há {{ useTimeAgo(new Date(video.created_at)).value.replace('hour',
-              'hora').replace('ago', '') }}
+            {{ video.user_name }} esteve online {{ timeAgo }}
           </p>
           <p class="text-sm font-semibold">{{ video.title }}</p>
         </div>
-        <!-- <span class="flex gap-2 font-semibold text-[#ff4f4d] text-sm">
-          <MajesticonsUserLine />
-          {{ stream.viewer_count }}
-        </span> -->
+        <span class="flex gap-2 font-semibold text-sm">
+          <MajesticonsEye />
+          {{ video.view_count }}
+        </span>
       </div>
       <a :href="video.url" target="_blank"
         class="flex items-center justify-between cursor-pointer gap-1 bg-ivy text-white p-1 px-2 rounded-lg font-medium">
@@ -37,6 +36,7 @@
 
 <script lang="ts" setup>
 import MajesticonsArrowRight from '~icons/majesticons/arrow-right';
+import MajesticonsEye from '~icons/majesticons/eye';
 
 
 interface Video {
@@ -69,6 +69,19 @@ const { video } = toRefs(props)
 
 const thumb = computed(() => {
   return video.value.thumbnail_url.replace('%{width}', 1920).replace('%{height}', 1080)
+})
+
+const timeAgo = computed(() => {
+  return useTimeAgo(new Date(video.value.created_at)).value
+    .replace('yesterday', 'ontem')
+    .replace('second', 'segundos')
+    .replace('minute', 'minutos')
+    .replace('hour', 'hora')
+    .replace('day', 'dia')
+    .replace('week', 'semana')
+    .replace('month', 'mês')
+    .replace('year', 'ano')
+    .replace('ago', '')
 })
 
 </script>
