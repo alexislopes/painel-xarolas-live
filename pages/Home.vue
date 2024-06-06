@@ -2,16 +2,15 @@
 <div class="">
   <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
   <div class="lg:flex lg:flex-row items-center lg:items-start justify-center lg:gap-4">
-    <div class="relative flex gap-4 flex-col items-center lg:flex-row">
+    <div class="relative flex gap-4 flex-col lg:flex-row">
       <div>
-        <h1 class="text-2xl font-bold mb-2">Agora</h1>
         <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]"/>
         <OffCard v-else :user="data.data[0]"/>
       </div>
       <div>
-        <h1 class="text-2xl font-bold mb-2">Última stream</h1>
         <PreviousStreamCard :video="videos.data[0]" />
       </div>
+      <Stat :value="`${Math.floor(totalHorasUltimas7Streams)}+ Horas`" />
     </div>
     <div class="p-4 lg:p-0 flex flex-col items-center justify-center">
 
@@ -48,12 +47,17 @@ const { data: streamInfo, status: statusStream, error: errorStream } = await $tw
 const { data, status, error } = await $twitch.users.getUserInfo()
 const { data: videos, status: statusVideos } = await $twitch.videos.getVideosList()
 
-const thumb = computed(() => {
-  return streamInfo.value.data.length ? streamInfo.value.data[0].thumbnail_url.replace('{width}', 1920).replace('{height}', 1080) : data.value.data[0].offline_image_url
-})
-
 const show12h = ref(false)
 const interval12h = ref()
+
+const totalHorasUltimas7Streams = computed(() => {
+  return videos.value.data.slice(0, 7)
+    .map(video => video.duration)
+    .map(duration => duration.split(/[a-z]+/)
+      .map(Number))
+    .map(([hora, minuto, segundo]) => hora + (minuto / 60) + (segundo / 3600))
+    .reduce((a, b) => a + b, 0)
+})
 
 function toggle12h() {
   const now = new Date();

@@ -1,11 +1,13 @@
 <template>
 <div class="flex gap-2 bg-heaven w-fit rounded-lg flex-col max-w-sm p-4">
-  <div>
-    <!-- <div class="m-2 w-fit uppercase absolute text-white bg-[#e91916] text-sm px-2 rounded font-medium">
-      ao vivo
-    </div> -->
-    <img class="h-56 rounded-lg" :src="thumb" />
+
+  <div class="flex items-center gap-2">
+    <LetsIconsBack class="text-xl" />
+    <h1 class="text-xl font-semibold">Última stream</h1>
   </div>
+
+  <img class="h-52 rounded-lg" :src="thumb" />
+
   <div class="relative p-2">
 
     <div class="flex flex-col gap-2 h-full justify-between">
@@ -35,6 +37,8 @@
 </template>
 
 <script lang="ts" setup>
+import LetsIconsBack from '~icons/lets-icons/back';
+
 import MajesticonsArrowRight from '~icons/majesticons/arrow-right';
 import MajesticonsEye from '~icons/majesticons/eye';
 

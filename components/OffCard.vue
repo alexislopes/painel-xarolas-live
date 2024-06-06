@@ -1,6 +1,10 @@
 <template>
 <div class="flex gap-2  bg-heaven w-fit rounded-lg max-w-sm flex-col p-4">
-  <img class="h-56 rounded-lg" :src="user.offline_image_url" />
+  <div class="flex items-center gap-2">
+    <FluentLive20Filled class="text-xl" />
+    <h1 class="text-xl font-semibold">Agora</h1>
+  </div>
+  <img class="h-52 rounded-lg" :src="user.offline_image_url" />
   <div class="relative p-2">
 
     <div class="flex flex-col gap-2  h-full w-full justify-between">
@@ -23,6 +27,8 @@
 </template>
 
 <script lang="ts" setup>
+import FluentLive20Filled from '~icons/fluent/live-20-filled';
+
 
 interface User {
   id: number;

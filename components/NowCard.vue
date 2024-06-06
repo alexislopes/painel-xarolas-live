@@ -1,10 +1,15 @@
 <template>
 <div class="flex gap-2 bg-[#f2e1e6] w-fit rounded-lg flex-col p-4 max-w-sm">
+  <div class="flex items-center gap-2">
+    <FluentLive20Filled class="text-xl" />
+    <h1 class="text-xl font-semibold">Agora</h1>
+  </div>
+
   <div>
     <div class="m-2 w-fit uppercase absolute text-white bg-[#e91916] text-sm px-2 rounded font-medium">
       ao vivo
     </div>
-    <img class="h-56 rounded-lg" :src="thumb" />
+    <img class="h-52 rounded-lg" :src="thumb" />
   </div>
   <div class="relative p-2">
 
@@ -35,6 +40,7 @@
 </template>
 
 <script lang="ts" setup>
+import FluentLive20Filled from '~icons/fluent/live-20-filled';
 import MajesticonsArrowRight from '~icons/majesticons/arrow-right';
 import MajesticonsUserLine from '~icons/majesticons/user-line';
 
