@@ -1,18 +1,24 @@
 <template>
-<div class="">
+<div class="flex flex-col mb-8">
   <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
   <div class="lg:flex lg:flex-row items-center lg:items-start justify-center lg:gap-4">
-    <div class="relative flex gap-4 flex-col lg:flex-row">
+    <div class="relative flex gap-4 flex-col lg:flex-row items-center lg:items-start">
       <div>
-        <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]"/>
-        <OffCard v-else :user="data.data[0]"/>
+        <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]" />
+        <OffCard v-else :user="data.data[0]" />
+        </div>
+        <div>
+          <PreviousStreamCard :video="videos.data[0]" />
+          </div>
+          <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 w-96 lg:w-auto">
+          <Stat :value="`${Math.floor(totalHorasUltimas7Streams)}+ Horas`" />
+          <Cronometro :stream-start="streamInfo?.data[0]?.started_at" />
+        </div>
+        <Pontualidade :video="videos.data[index]" @prev="index--" @next="index++"/>
       </div>
-      <div>
-        <PreviousStreamCard :video="videos.data[0]" />
-      </div>
-      <Stat :value="`${Math.floor(totalHorasUltimas7Streams)}+ Horas`" />
     </div>
-    <div class="p-4 lg:p-0 flex flex-col items-center justify-center">
+    <!-- <div class="p-4 lg:p-0 flex flex-col items-center justify-center">
 
       <div>
 
@@ -23,7 +29,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 <CopyPasta v-if="show12h && !streamInfo.data.length" />
@@ -49,6 +55,7 @@ const { data: videos, status: statusVideos } = await $twitch.videos.getVideosLis
 
 const show12h = ref(false)
 const interval12h = ref()
+const index = ref(0)
 
 const totalHorasUltimas7Streams = computed(() => {
   return videos.value.data.slice(0, 7)

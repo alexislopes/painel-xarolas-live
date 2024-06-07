@@ -85,7 +85,7 @@ const timeAgo = computed(() => {
     .replace('week', 'semana')
     .replace('month', 'mês')
     .replace('year', 'ano')
-    .replace('ago', '')
+    .replace('ago', 'atrás')
 })
 
 </script>

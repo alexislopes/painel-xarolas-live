@@ -17,7 +17,23 @@
 
           <img class="h-20 w-20 mx-auto my-auto" src="https://cdn.betterttv.net/emote/5e93f023ce7cbf62fe149ebe/3x.webp"
             alt="">
+
+
         </div>
+        <span class="flex items-center flex-col ">
+
+          <p class="text-xs">
+            Siga o bruxo nas mídias sociais:
+          </p>
+          <div class="flex gap-2">
+            <a href="https://instagram.com/xarolao" target="_blank">
+              <MdiInstagram />
+            </a>
+            <a href="https://x.com/xarolao" target="_blank">
+              <RiTwitterXFill />
+            </a>
+          </div>
+        </span>
 
       </div>
 
@@ -28,6 +44,8 @@
 
 <script lang="ts" setup>
 import FluentLive20Filled from '~icons/fluent/live-20-filled';
+import MdiInstagram from '~icons/mdi/instagram';
+import RiTwitterXFill from '~icons/ri/twitter-x-fill';
 
 
 interface User {

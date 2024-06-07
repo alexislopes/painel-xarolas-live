@@ -1,31 +1,42 @@
-<script lang="ts" setup>
-const hoje12h = computed(() => {
-  const hoje = new Date()
-  return new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 12, 0)
-})
-
-const atraso = computed(() => {
-  return useNow().value.getTime() - hoje12h.value.getTime()
-})
-
-const cronometro = ref()
-
-const { width: screen_h } = useWindowSize()
-const { width: element_h } = useElementSize(cronometro)
-
-
-
-</script>
-
 <template>
-<div ref="cronometro"
-:style="{ top: '8px', right: `${(screen_h - element_h) / 2}px` }"
-  class="fixed z-10 bg-heaven flex items-center gap-2 px-3 py-1 border border-underground rounded-full flex-col w-fit select-none">
-
-  <span class="font-black text-carmine text-xs">
-    +{{ useDateFormat(new Date(atraso + (3600000 * 3)), 'HH:mm:ss').value }}
+<div class="bg-heaven p-4 rounded-md items-center flex flex-col w-full">
+  <p>{{ title }}</p>
+  <span class="font-bold text-2xl">
+    {{ useDateFormat(new Date((uptime || next) + (3600000 * 3)), 'HH:mm:ss').value }}
   </span>
+  <span class="text-sm font-medium">Horas</span>
 </div>
 </template>
 
-<style scoped></style>
+<script lang="ts" setup>
+interface Props {
+  streamStart: string
+}
+
+const props = defineProps<Props>()
+
+const doze = computed(() => {
+  const hoje = new Date()
+  const passou = hoje.getHours() > 12
+
+  if (passou) return new Date(new Date().setDate(hoje.getDate() + 1)).setHours(12, 0, 0, 0)
+  else return hoje.setHours(12, 0, 0, 0)
+})
+
+const uptime = computed(() => {
+  return useNow().value.getTime() - new Date(props.streamStart).getTime()
+})
+
+const next = computed(() => {
+  return new Date(doze.value).getTime() - useNow().value.getTime()
+})
+
+const title = computed(() => {
+  return props.streamStart ? "Ao vivo há" : "Próxima stream em"
+})
+
+</script>
+
+<style>
+
+</style>

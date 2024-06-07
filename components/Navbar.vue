@@ -70,7 +70,9 @@ const status = ref('idle')
 const nav = ref()
 
 onClickOutside(nav, () => {
-  status.value = 'closed'
+  if (status.value === '') {
+    status.value = 'closed'
+  }
 })
 
 const { path } = useRoute()
