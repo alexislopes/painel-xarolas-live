@@ -1,15 +1,19 @@
 <template>
 <div class="flex items-center bg-heaven justify-between p-4 rounded-md ">
   <EvaArrowLeftFill @click="$emit('prev')" />
-  <div class="px-4 flex flex-col gap-2 w-full">
+  <div class="px-4 flex flex-col gap-5 w-full">
     <CarbonTime class="text-2xl" />
     <div>
       <h1 class="text-xl font-semibold">Pontualidade</h1>
       <p class="text-sm">{{ timeAgo }}</p>
     </div>
     <div class="flex items-center justify-center gap-3 p-2">
+
       <p class="text-bold text-xl">{{ hora }}</p>
-      <CarbonArrowRight />
+      -
+      <p class="text-bold text-xl">12:00</p>
+      <!-- <CarbonArrowRight /> -->
+       =
       <p class="text-bold text-xl">{{ atrasoFormatado }}</p>
     </div>
     <span v-if="diff > 0" class="font-semibold text-xs text-center">atrasadinha, guys ✌️😁✌️</span>
@@ -21,7 +25,6 @@
 </template>
 
 <script lang="ts" setup>
-import CarbonArrowRight from '~icons/carbon/arrow-right';
 import CarbonTime from '~icons/carbon/time';
 import EvaArrowLeftFill from '~icons/eva/arrow-left-fill';
 import EvaArrowRightFill from '~icons/eva/arrow-right-fill';

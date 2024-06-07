@@ -1,11 +1,16 @@
 <script lang="ts" setup></script>
 
 <template>
-<div class="h-full">
-  <div class="relative min-h-16"> 
+<div class="h-screen">
+  <div class="relative min-h-16">
     <Navbar class="p-4" />
   </div>
-  <slot />
+  <div class="w-full flex justify-center">
+
+    <div class="max-w-6xl">
+      <slot />
+    </div>
+  </div>
 </div>
 </template>
 
