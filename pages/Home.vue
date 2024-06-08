@@ -18,18 +18,6 @@
         <Pontualidade :video="videos.data[index]" @prev="index--" @next="index++"/>
       </div>
     </div>
-    <!-- <div class="p-4 lg:p-0 flex flex-col items-center justify-center">
-
-      <div>
-
-        <h2 class="text-2xl font-bold text-underground mb-2 lg:mt-0">Pontualidade</h2>
-        <div class="max-w-sm">
-          <div class="border border-ivy rounded-xl bg-heaven">
-            <Atraso v-for="video in videos.data.slice(0, 7)" :key="video.id" :video="video" />
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>
 <CopyPasta v-if="show12h && !streamInfo.data.length" />

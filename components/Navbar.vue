@@ -4,7 +4,7 @@
 </button>
 <div v-if="status === ''" class="fixed top-0 bottom-0 left-0 right-0 bg-underground/40 z-[1]"></div>
 <div ref="nav" :class="status"
-  class="nav z-10 bg-white fixed top-0 bottom-0 rounded-tr-lg rounded-br-lg lg:animate-[slide-lg_0.5s_linear_forwards] md:animate-[slide-md_0.5s_linear_forwards] animate-[slide-sm_0.5s_linear_forwards]">
+  class="nav z-10 bg-white fixed top-0 bottom-0 rounded-tr-lg rounded-br-lg lg:animate-[slide-lg_0.1s_linear_forwards] md:animate-[slide-md_0.1s_linear_forwards] animate-[slide-sm_0.1s_linear_forwards]">
   <div class="relative h-full">
 
   <div class="w-full flex justify-center p-20">
@@ -50,7 +50,15 @@
       </div>
     </div>
   </div>
-  <p class="absolute text-center bottom-0 text-xs truncate w-full p-4 opacity-70">Designed & Developed with 💖 by <a class="underline" href="https://alexislopes.github.io/alexisme/" target="_blank">Alexis Lopes</a> | {{ pkg.version }}</p>
+  <div class="absolute bottom-0 flex flex-col justify-center w-full px-4">
+
+    <NuxtLink to="/roadmap" class="bg-mechanic/20 p-2 items-center justify-between rounded-md flex select-none">
+      <p >Confira o roadmap para este app</p> 
+      <OcticonChevronRight16/>
+    </NuxtLink>
+  <p class="text-center text-xs text-clip w-full p-4 opacity-70">
+    Designed & Developed with 💖 by <a class="underline" href="https://alexislopes.github.io/alexisme/" target="_blank">Alexis Lopes</a> | {{ pkg.version }}</p>
+    </div>
 </div>
 
 </div>
@@ -64,6 +72,7 @@ import MajesticonsMenu from '~icons/majesticons/menu';
 import MajesticonsSkullLine from '~icons/majesticons/skull-line';
 import MajesticonsTvOld from '~icons/majesticons/tv-old';
 import MajesticonsTvOldLine from '~icons/majesticons/tv-old-line';
+import OcticonChevronRight16 from '~icons/octicon/chevron-right-16';
 import * as pkg from '../package.json';
 
 const status = ref('idle')
@@ -88,7 +97,7 @@ const { path } = useRoute()
 }
 
 .closed.nav {
-  @apply animate-[slide-back-sm_0.5s_linear_forwards] md:animate-[slide-back-md_0.5s_linear_forwards] lg:animate-[slide-back-lg_0.5s_linear_forwards];
+  @apply animate-[slide-back-sm_0.1s_linear_forwards] md:animate-[slide-back-md_0.1s_linear_forwards] lg:animate-[slide-back-lg_0.1s_linear_forwards];
 }
 
 .idle.nav {
