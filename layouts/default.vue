@@ -7,7 +7,7 @@
   </div>
   <div class="w-full flex justify-center">
 
-    <div class="max-w-6xl">
+    <div class="lg:max-w-6xl">
       <slot />
     </div>
   </div>

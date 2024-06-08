@@ -1,7 +1,6 @@
 <template>
-<div class="flex flex-col mb-8 h-[80vh] items-center justify-center">
+<div class="flex flex-col mb-8 lg:h-[80vh] items-center justify-center">
   <p class="text-start w-full text-3xl text-bold py-6">Início</p>
-  <Cronometro v-if="!streamInfo.data.length && new Date().getHours() >= 12 && !streamouHoje" />
   <div class="lg:flex lg:flex-row items-center lg:items-start justify-center lg:gap-4">
     <div class="relative flex gap-4 flex-col lg:flex-row items-center lg:items-start">
       <div>
