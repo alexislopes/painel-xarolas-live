@@ -13,7 +13,7 @@
           <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-4 w-96 lg:w-auto">
           <Stat :value="`${Math.floor(totalHorasUltimas7Streams)}+ Horas`" />
-          <Cronometro :stream-start="streamInfo?.data[0]?.started_at" />
+          <Cronometro :stream-start="streamInfo?.data[0]?.started_at" :streamou="streamouHoje" />
         </div>
         <Pontualidade :video="videos.data[index]" @prev="index--" @next="index++"/>
       </div>

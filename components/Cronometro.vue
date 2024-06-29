@@ -11,6 +11,7 @@
 <script lang="ts" setup>
 interface Props {
   streamStart: string
+  streamou: boolean
 }
 
 const props = defineProps<Props>()
@@ -19,7 +20,7 @@ const doze = computed(() => {
   const hoje = new Date()
   const passou = hoje.getHours() > 12
 
-  if (passou) return new Date(new Date().setDate(hoje.getDate() + 1)).setHours(12, 0, 0, 0)
+  if (passou || props.streamou) return new Date(new Date().setDate(hoje.getDate() + 1)).setHours(12, 0, 0, 0)
   else return hoje.setHours(12, 0, 0, 0)
 })
 
