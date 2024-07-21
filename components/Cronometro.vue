@@ -16,25 +16,27 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const { timeToShow, title, delayed } = useStreamPonctuality()
+const { timeToShow, title, delayed, now } = useStreamPonctuality()
 
 
 function useStreamPonctuality() {
 
+  const { now } = useNow({ controls: true })
+
   const delayed = computed(() => {
-    return !props.streamou && new Date().getHours() > 12
+    return (!props.streamou && !props.streamStart) && new Date().getHours() > 12
   })
 
   const timeElapsed = computed(() => {
-    return (useNow().value.getTime() - new Date().setHours(12, 0, 0, 0)) + (3600000 * 3)
+    return (now.value.getTime() - new Date().setHours(12, 0, 0, 0)) + (3600000 * 3)
   })
 
   const uptime = computed(() => {
-    return useNow().value.getTime() - new Date("2024-07-20T16:03:43Z" || 0).getTime()
+    return (now.value.getTime() - new Date(props.streamStart || 0).getTime()) + (3600000 * 3)
   })
 
   const next = computed(() => {
-    return (new Date(new Date().setDate(new Date().getDate() + 1)).setHours(12, 0, 0, 0) - useNow().value.getTime()) + (3600000 * 3)
+    return (new Date(new Date().setDate(new Date().getDate() + 1)).setHours(12, 0, 0, 0) - now.value.getTime()) + (3600000 * 3)
   })
 
   const timeToShow = computed(() => {
@@ -46,7 +48,7 @@ function useStreamPonctuality() {
     return delayed.value ? "Comendo mole há" : props.streamou ? "Próxima stream em" : "Ao vivo há"
   })
 
-  return { timeToShow, title, delayed }
+  return { timeToShow, title, delayed, now }
 }
 
 </script>
