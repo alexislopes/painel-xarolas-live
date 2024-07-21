@@ -18,7 +18,6 @@
           <img class="h-20 w-20 mx-auto my-auto" src="https://cdn.betterttv.net/emote/5e93f023ce7cbf62fe149ebe/3x.webp"
             alt="">
 
-
         </div>
         <span class="flex items-center flex-col ">
 
