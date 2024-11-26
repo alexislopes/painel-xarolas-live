@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
-    baseURL: "/x-hub/"
+    baseURL: "/painel-xarolas-live/"
   },
   ssr: false,
   pages: true,
