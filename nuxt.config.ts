@@ -10,9 +10,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       twitch_base_url: process.env.TWITCH_BASE_URL,
-      authorization: process.env.AUTHORIZATION,
       client_id: process.env.CLIENT_ID,
-      user_id: process.env.USER_ID
+      client_secret: process.env.CLIENT_SECRET,
+      user_id: process.env.USER_ID,
+      grant_type: process.env.GRANT_TYPE,
+      auth_twitch_base_url: process.env.TWITCH_AUTH_BASE_URL
     }
   },
 

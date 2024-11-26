@@ -1,21 +1,21 @@
 <template>
-<div class="flex flex-col mb-8 lg:h-[80vh] items-center justify-center">
+<div v-if="statusVideos != 'error'" class="flex flex-col mb-8 lg:h-[80vh] items-center justify-center">
   <p class="text-start w-full text-3xl text-bold py-6">Início</p>
   <div class="lg:flex lg:flex-row items-center lg:items-start justify-center lg:gap-4">
     <div class="relative flex gap-4 flex-col lg:flex-row items-center lg:items-start">
       <div>
-        <NowCard v-if="streamInfo.data.length" :stream="streamInfo.data[0]" />
-        <OffCard v-else :user="data.data[0]" />
+        <NowCard v-if="streamInfo?.data.length" :stream="streamInfo.data[0]" />
+        <OffCard v-else-if="data?.data" :user="data?.data[0]" />
         </div>
         <div>
-          <PreviousStreamCard :video="videos.data[0]" />
+          <PreviousStreamCard v-if="videos?.data" :video="videos.data[0]" />
           </div>
           <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-4 w-96 lg:w-auto">
           <Stat :value="`${Math.floor(totalHorasUltimas7Streams)}+ Horas`" />
           <Cronometro :stream-start="streamInfo?.data[0]?.started_at" :streamou="streamouHoje" />
         </div>
-        <Pontualidade :video="videos.data[index]" @prev="index--" @next="index++"/>
+        <Pontualidade v-if="videos?.data" :video="videos.data[index]" @prev="index--" @next="index++"/>
       </div>
     </div>
   </div>
@@ -30,15 +30,33 @@ useHead({ title: 'Xarolas HUB | Início', link: [{ rel: 'icon', type: 'image/png
 const { $twitch } = useNuxtApp()
 
 const { data: streamInfo, status: statusStream, error: errorStream } = await $twitch.streams.getStreamInfo()
+
+const errorStrm = computed(() => {
+  return errorStream.value
+})
+
+
+
+watch(errorStrm, (values) => {
+  console.log(values)
+  if (values.includes('error')) {
+    getToken()
+  }
+})
 const { data, status, error } = await $twitch.users.getUserInfo()
 const { data: videos, status: statusVideos } = await $twitch.videos.getVideosList()
+const { data: token, execute: getToken, status: statusToken } = await $twitch.auth.getToken({ immediate: false })
+
+watch(statusToken, (value) => {
+  console.log(value)
+})
 
 const show12h = ref(false)
 const interval12h = ref()
 const index = ref(0)
 
 const totalHorasUltimas7Streams = computed(() => {
-  return videos.value.data.slice(0, 7)
+  return videos.value?.data.slice(0, 7)
     .map(video => video.duration)
     .map(duration => duration.split(/[a-z]+/)
       .map(Number))
@@ -58,7 +76,7 @@ function toggle12h() {
 
 const streamouHoje = computed(() => {
   const hoje = new Date().setHours(0, 0, 0, 0)
-  return new Date(videos.value.data[0].created_at).setHours(0, 0, 0, 0) === hoje
+  return new Date(videos.value?.data[0].created_at).setHours(0, 0, 0, 0) === hoje
 })
 
 onMounted(() => {

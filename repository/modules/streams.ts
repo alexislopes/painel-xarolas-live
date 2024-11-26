@@ -1,9 +1,11 @@
 
 import type { AsyncDataOptions } from '#app';
-import type { FetchOptions } from 'ofetch';
+import { $fetch, type FetchOptions } from 'ofetch';
 
 // locals
 import FetchFactory from '../factory';
+
+import AuthModule from './auth';
 
 
 
@@ -46,11 +48,14 @@ class StreamsModule extends FetchFactory<IResponse[]> {
 
     const config = useRuntimeConfig()
 
+    const { data } = await new AuthModule($fetch.create({ baseURL: config.public.auth_twitch_base_url })).getToken()
+
+
     return useAsyncData(
       () => {
         const fetchOptions: FetchOptions<'json'> = {
           headers: {
-            'Authorization': `Bearer ${config.public.authorization}`,
+            'Authorization': `Bearer ${data.value?.access_token}`,
             'Client-Id': config.public.client_id
           }
         };
